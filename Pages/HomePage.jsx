@@ -1,9 +1,12 @@
-import SideBar from "./Components/sidebar";
-import "./App.css";
+import Footer from "../src/Components/Footer";
+import Header from "../src/Components/Header";
+import SideBar from "../src/Components/sidebar";
+import "../src/App.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-const user = localStorage.getItem("user");
-function App() {
+
+export default function HomePage() {
+	const user = localStorage.getItem("user");
 	const url = import.meta.env.VITE_BACKEND_URL;
 	const [posts, setPosts] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -26,25 +29,29 @@ function App() {
 	if (loading) {
 		return (
 			<>
+				<Header />
 				<div>Loading posts.......</div>
+				<Footer />
 			</>
 		);
 	}
 	return (
 		<>
+			<Header />
 			<SideBar user={user} />
-			{posts.map((post, index) => {
-				return (
-					<>
-						<div key={index}>
-							<p>{post.title}</p>
-							<Link to={`/post/${post.id}`}>Link to {post.title}</Link>
-						</div>
-					</>
-				);
-			})}
+			<div className="card-grid">
+				{posts.map((post, index) => {
+					return (
+						<>
+							<div className="post-card" key={index}>
+								<p>{post.title}</p>
+								<Link to={`/post/${post.id}`}>View Post</Link>
+							</div>
+						</>
+					);
+				})}
+			</div>
+			<Footer />
 		</>
 	);
 }
-
-export default App;

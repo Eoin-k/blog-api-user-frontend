@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Comments from "./Comments";
+import Header from "./Header";
 const SinglePost = () => {
 	const url = import.meta.env.VITE_BACKEND_URL;
 	let { id } = useParams();
@@ -34,6 +35,7 @@ const SinglePost = () => {
 
 	return (
 		<>
+			<Header />
 			<h1>This is the single post element {post.id}</h1>
 			<p>{post.content}</p>
 			{comments.length == 0 ? (
