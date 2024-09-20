@@ -1,12 +1,10 @@
 import Footer from "../src/Components/Footer";
 import Header from "../src/Components/Header";
-import SideBar from "../src/Components/sidebar";
 import "../src/App.css";
 import { useState, useEffect } from "react";
 import PostGrid from "../src/Components/PostGrid";
 
 export default function HomePage() {
-	const user = localStorage.getItem("user");
 	const url = import.meta.env.VITE_BACKEND_URL;
 	const [posts, setPosts] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -29,7 +27,7 @@ export default function HomePage() {
 		return (
 			<>
 				<Header />
-				<div>Loading posts.......</div>
+				<div className="container">Loading posts.......</div>
 				<Footer />
 			</>
 		);
@@ -37,7 +35,7 @@ export default function HomePage() {
 	return (
 		<>
 			<Header />
-			<SideBar user={user} />
+
 			<PostGrid posts={posts} />
 			<Footer />
 		</>

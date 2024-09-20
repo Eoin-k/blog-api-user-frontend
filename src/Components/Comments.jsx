@@ -8,7 +8,7 @@ const Comments = (comments) => {
 		<>
 			{comments.map((comment, index) => {
 				return (
-					<div key={index}>
+					<div className="comment-card" key={index}>
 						<p>{comment.content}</p>
 					</div>
 				);

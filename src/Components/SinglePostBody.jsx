@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Comments from "./Comments";
+import CommentForm from "./CommentForm";
 const SinglePostBody = () => {
 	const url = import.meta.env.VITE_BACKEND_URL;
 	let { id } = useParams();
@@ -34,13 +35,28 @@ const SinglePostBody = () => {
 
 	return (
 		<>
-			<h1>This is the single post element {post.id}</h1>
-			<p>{post.content}</p>
-			{comments.length == 0 ? (
-				<p>No comments to show</p>
-			) : (
-				<Comments comments={comments} />
-			)}
+			{" "}
+			<div className="container">
+				<div className="post-header">
+					<h1>This is the single post element {post.id}</h1>
+				</div>
+				<div className="post-body">
+					<p>{post.content}</p>
+				</div>
+				<div className="comments-wrapper">
+					{comments.length == 0 ? (
+						<div className="comments-inner">
+							<p>No comments to show</p>
+							<CommentForm />
+						</div>
+					) : (
+						<div className="comments-inner">
+							<Comments comments={comments} />
+							<CommentForm />
+						</div>
+					)}
+				</div>
+			</div>
 		</>
 	);
 };

@@ -3,7 +3,7 @@ export default function PostGrid(posts) {
 	posts = posts.posts;
 	return (
 		<>
-			<div className="card-grid">
+			<div className=" container card-grid">
 				{posts.map((post, index) => {
 					return (
 						<>

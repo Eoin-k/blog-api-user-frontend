@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
 const LoginForm = () => {
+	const user = localStorage.getItem("user");
+	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -23,12 +26,25 @@ const LoginForm = () => {
 				localStorage.setItem("user", data.user);
 				localStorage.setItem("role", data.role);
 				localStorage.setItem("id", data.id);
-				return;
+				navigate("/");
 			}
 		} catch (err) {
 			console.log(err);
 		}
 	};
+
+	if (user) {
+		return (
+			<>
+				<div className="container login-message-wrapper">
+					<h1>Looks Like your already logged in</h1>
+					<Link className="button-primary" to="/">
+						Go to home
+					</Link>
+				</div>
+			</>
+		);
+	}
 
 	return (
 		<>
