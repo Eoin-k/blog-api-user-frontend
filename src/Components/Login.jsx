@@ -37,6 +37,7 @@ const LoginForm = () => {
 			<h1>This is the login form</h1>
 			<form>
 				<label htmlFor="email">
+					Email:
 					<input
 						type="email"
 						value={email}
@@ -44,6 +45,7 @@ const LoginForm = () => {
 					/>
 				</label>
 				<label htmlFor="password">
+					Password:
 					<input
 						type="password"
 						value={password}

@@ -11,11 +11,11 @@ const SinglePost = () => {
 	useEffect(() => {
 		const getpost = async () => {
 			try {
-				setLoading(true);
 				const res = await fetch(`${url}/post/${id}`);
 				const data = await res.json();
 				setPost(data[0]);
 				setComments(...comments, data[0].comments);
+				console.log(data);
 				setLoading(false);
 			} catch (error) {
 				console.error(error);
@@ -23,9 +23,15 @@ const SinglePost = () => {
 		};
 		getpost();
 	}, []);
+
+	if (post.published == false) {
+		return <p>sorry it seems we dont have that post here</p>;
+	}
+
 	if (loading) {
 		return <div>Loading....</div>;
 	}
+
 	return (
 		<>
 			<h1>This is the single post element {post.id}</h1>
