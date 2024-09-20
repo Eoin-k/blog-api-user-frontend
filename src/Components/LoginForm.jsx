@@ -6,7 +6,6 @@ const LoginForm = () => {
 
 	const loginSubmission = async () => {
 		const url = import.meta.env.VITE_BACKEND_URL;
-		console.log("function called");
 		try {
 			console.log("trying to log in");
 			const res = await fetch(`${url}/login`, {
@@ -18,7 +17,6 @@ const LoginForm = () => {
 			});
 
 			const data = await res.json();
-			console.log(data.token, data.user, data.role);
 
 			if (res.ok) {
 				localStorage.setItem("token", data.token);

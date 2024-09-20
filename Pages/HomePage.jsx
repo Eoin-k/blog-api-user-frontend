@@ -3,7 +3,7 @@ import Header from "../src/Components/Header";
 import SideBar from "../src/Components/sidebar";
 import "../src/App.css";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import PostGrid from "../src/Components/PostGrid";
 
 export default function HomePage() {
 	const user = localStorage.getItem("user");
@@ -16,8 +16,7 @@ export default function HomePage() {
 			try {
 				const res = await fetch(`${url}`);
 				const data = await res.json();
-				await setPosts(data);
-				console.log(posts);
+				setPosts(data);
 				setLoading(false);
 			} catch (error) {
 				console.error(error);
@@ -39,18 +38,7 @@ export default function HomePage() {
 		<>
 			<Header />
 			<SideBar user={user} />
-			<div className="card-grid">
-				{posts.map((post, index) => {
-					return (
-						<>
-							<div className="post-card" key={index}>
-								<p>{post.title}</p>
-								<Link to={`/post/${post.id}`}>View Post</Link>
-							</div>
-						</>
-					);
-				})}
-			</div>
+			<PostGrid posts={posts} />
 			<Footer />
 		</>
 	);
