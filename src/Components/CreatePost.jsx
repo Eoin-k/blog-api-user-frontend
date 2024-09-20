@@ -1,23 +1,27 @@
 import { useState } from "react";
-const CreatePost = (user) => {
+const CreatePost = () => {
 	const [title, setTitle] = useState("");
 	const [content, setContent] = useState("");
+	const [published, setPublished] = useState(false);
 
+	const url = import.meta.env.VITE_BACKEND_URL;
+	const token = localStorage.getItem("token");
+	const authorId = localStorage.getItem("id");
+	const role = localStorage.getItem("role");
+	const handleCheckbox = (e) => {
+		const checkedval = e.target.checked;
+		setPublished(checkedval);
+	};
 	const createPost = async () => {
-		const url = import.meta.env.VITE_BACKEND_URL;
-		const token = localStorage.getItem("token");
-		const id = localStorage.getItem("id");
-
 		try {
-			if (user) {
+			if (role == "ADMIN") {
 				const res = await fetch(`${url}/createpost`, {
 					method: "POST",
 					headers: {
-						bearer: token,
+						Authorization: token,
 						"content-type": "application/json",
 					},
-					body: JSON.stringify({ title, content, published: true, id }),
-					user: user,
+					body: JSON.stringify({ title, content, published, authorId }),
 				});
 
 				if (res.ok) {
@@ -34,7 +38,7 @@ const CreatePost = (user) => {
 
 	return (
 		<>
-			{user ? (
+			{role == "ADMIN" ? (
 				<div>
 					<h1>This is the form to submit a post</h1>
 					<form action="">
@@ -53,6 +57,15 @@ const CreatePost = (user) => {
 								id="content"
 								onChange={(e) => setContent(e.target.value)}
 							></textarea>
+						</label>
+						<label htmlFor="published">
+							Publish Post?
+							<input
+								onChange={handleCheckbox}
+								type="checkbox"
+								name="published"
+								id="published"
+							/>
 						</label>
 						<button type="button" onClick={createPost}>
 							Create Post
