@@ -7,7 +7,6 @@ export default function Footer() {
 				<div className="footer-outer-wrapper">
 					<div className="container footer-inner-wrapper">
 						<Link to="/">Home</Link>
-						<Link to="/login">Login</Link>
 						<Link to="/signup">Sign Up</Link>
 					</div>
 				</div>

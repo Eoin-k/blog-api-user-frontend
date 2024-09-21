@@ -3,20 +3,25 @@ import { Link, useParams } from "react-router-dom";
 
 export default function CommentForm() {
 	const user = localStorage.getItem("user");
-	const [comment, setComment] = useState("");
+	const token = localStorage.getItem("token");
+	const [content, setContent] = useState("");
 	const authorId = localStorage.getItem("id");
 	let { id } = useParams();
 	const submitComment = async () => {
 		const url = import.meta.env.VITE_BACKEND_URL;
-
 		try {
-			await fetch(`${url}/post/${id}/comments`, {
+			const res = await fetch(`${url}/post/${id}/comments`, {
 				method: "POST",
 				headers: {
+					Authorization: token,
 					"content-type": "application/json",
 				},
-				body: JSON.stringify({ comment, authorId, id }),
+				body: JSON.stringify({ content, authorId, id }),
 			});
+			if (res.ok) {
+				console.log("Comment Added");
+				setContent("");
+			}
 		} catch (error) {
 			console.error(error);
 		}
@@ -30,18 +35,14 @@ export default function CommentForm() {
 						<label htmlFor="comment">
 							<p>Add a comment:</p>
 							<textarea
-								onChange={(e) => setComment(e.target.value)}
+								onChange={(e) => setContent(e.target.value)}
 								cols={40}
 								rows={15}
-								name="comment"
-								id="comment"
+								name="content"
+								id="content"
 							></textarea>
 						</label>
-						<button
-							className="button-primary"
-							onClick={submitComment}
-							type="button"
-						>
+						<button className="button-primary" onClick={submitComment} type="button">
 							Submit Comment
 						</button>
 					</form>

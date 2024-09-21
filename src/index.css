@@ -12,11 +12,7 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	--content-width: 1280px;
-	--section-block-padding: clamp(
-		6rem,
-		calc(1.4340344168vw + 5.5411089866rem),
-		7.5rem
-	);
+	--section-block-padding: clamp(6rem, calc(1.4340344168vw + 5.5411089866rem), 7.5rem);
 	--gutter: clamp(2.4rem, calc(0.5736137667vw + 2.2164435946rem), 3rem);
 	--grid-gap: 1.5rem;
 	--grid-auto-3: repeat(
@@ -37,7 +33,7 @@
 
 a {
 	font-weight: 500;
-	color: #646cff;
+	color: #f7f8ff;
 	text-decoration: inherit;
 }
 a:hover {
@@ -95,6 +91,28 @@ h1 {
 		background-color: #f9f9f9;
 	}
 }
+form {
+	display: flex;
+	flex-direction: column;
+	max-width: 20rem;
+	align-self: center;
+	gap: 1rem;
+}
+
+label {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+footer {
+	display: flex;
+	flex-direction: column;
+	padding: 1.5rem;
+	min-height: 4rem;
+	width: 100%;
+	margin-top: auto;
+}
 
 .container {
 	display: flex;
@@ -117,14 +135,6 @@ h1 {
 	box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
 }
 
-footer {
-	display: flex;
-	flex-direction: column;
-	padding: 1.5rem;
-	min-height: 4rem;
-	width: 100%;
-	margin-top: auto;
-}
 .footer-outer-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -139,9 +149,16 @@ footer {
 	justify-content: center;
 }
 
+.login-outer-wrapper {
+	align-items: center;
+}
+
 .login-message-wrapper {
 	align-items: center;
 	padding-block: 3rem;
+}
+.login-form-wrapper {
+	min-width: 15rem;
 }
 
 .header-inner {
@@ -159,6 +176,10 @@ footer {
 	gap: 1.5rem;
 }
 
+.comment-card-wrapper {
+	max-width: 70ch;
+}
+
 .comment-form-wrapper {
 	display: flex;
 	flex-direction: column;
@@ -171,13 +192,6 @@ footer {
 	width: 100%;
 	align-content: center;
 	gap: 0.85rem;
-}
-
-form {
-	display: flex;
-	flex-direction: column;
-	max-width: 20rem;
-	align-self: center;
 }
 
 .post-header,
@@ -204,6 +218,5 @@ form {
 	flex-direction: column;
 	border: 1px solid white;
 	max-width: 20rem;
-	align-self: center;
 	padding: 1rem;
 }

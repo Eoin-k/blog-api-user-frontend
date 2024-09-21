@@ -10,7 +10,6 @@ const LoginForm = () => {
 	const loginSubmission = async () => {
 		const url = import.meta.env.VITE_BACKEND_URL;
 		try {
-			console.log("trying to log in");
 			const res = await fetch(`${url}/login`, {
 				method: "POST",
 				headers: {
@@ -48,31 +47,29 @@ const LoginForm = () => {
 
 	return (
 		<>
-			<div className="login-text-wrapper">
-				<h1>This is the login form</h1>
-			</div>
-			<div className="login-form-wrapper">
-				<form>
-					<label htmlFor="email">
-						Email:
-						<input
-							type="email"
-							value={email}
-							onChange={(e) => setEmail(e.target.value, console.log(email))}
-						/>
-					</label>
-					<label htmlFor="password">
-						Password:
-						<input
-							type="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-						/>
-					</label>
-					<button onClick={loginSubmission} type="button">
-						Login
-					</button>
-				</form>
+			<div className="container login-outer-wrapper">
+				<div className="login-text-wrapper">
+					<h1>This is the login form</h1>
+				</div>
+				<div className="login-form-wrapper">
+					<form>
+						<label htmlFor="email">
+							Email:
+							<input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+						</label>
+						<label htmlFor="password">
+							Password:
+							<input
+								type="password"
+								value={password}
+								onChange={(e) => setPassword(e.target.value)}
+							/>
+						</label>
+						<button className="button-primary" onClick={loginSubmission} type="button">
+							Login
+						</button>
+					</form>
+				</div>
 			</div>
 		</>
 	);
