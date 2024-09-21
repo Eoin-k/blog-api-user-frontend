@@ -1,6 +1,6 @@
 import Footer from "../src/Components/Footer";
 import Header from "../src/Components/Header";
-import "../src/App.css";
+import "../src/index.css";
 import { useState, useEffect } from "react";
 import PostGrid from "../src/Components/PostGrid";
 
